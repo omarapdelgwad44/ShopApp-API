@@ -14,9 +14,9 @@ public class AuthController : ControllerBase
         _context = context;
     }
 
-
+/*
     [HttpPost("register")]
-    public IActionResult Register([FromForm] User request)
+    public IActionResult Register([FromForm] ShopApp_APIUser request)
     {
         // Check if the username already exists
         var existingUser = _context.Users.SingleOrDefault(u => u.Name == request.Name);
@@ -63,4 +63,5 @@ public class AuthController : ControllerBase
         // Optionally return JWT token
         return Ok("Login successful");
     }
+*/
 }

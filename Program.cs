@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopApp_API;
+using Microsoft.AspNetCore.Identity;
+using ShopApp_API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 var con = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseSqlServer(con));
+
+builder.Services.AddDefaultIdentity<ShopApp_APIUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<DataBaseContext>();
 // Add services to the container.
 
 builder.Services.AddControllers();

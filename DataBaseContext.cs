@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ShopApp_API.Models;
 
 namespace ShopApp_API
 {
-    public class DataBaseContext : DbContext
+    public class DataBaseContext : IdentityDbContext<ShopApp_APIUser>
     {
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options)
         {
@@ -11,7 +12,7 @@ namespace ShopApp_API
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<User> Users { get; set; }
+       // public DbSet<ShopApp_APIUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,20 +27,7 @@ namespace ShopApp_API
 
 
             {
-                modelBuilder.Entity<User>(entity =>
-                {
-                    entity.HasKey(u => u.Id);
-                    entity.Property(u => u.Email)
-                          .IsRequired()
-                          .HasMaxLength(150);
-                    entity.HasIndex(u => u.Email)
-                          .IsUnique();
-                    entity.Property(u => u.Name)
-                          .IsRequired()
-                          .HasMaxLength(100);
-                    entity.Property(u => u.UserType)
-                          .IsRequired();
-                });
+            
             }
         }
         }
